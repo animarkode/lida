@@ -5,6 +5,8 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import com.animarkode.lida.R
 import com.animarkode.lida.data.model.Kind
 import com.animarkode.lida.data.model.WatchItem
 import com.animarkode.lida.ui.theme.LidaTheme
@@ -18,6 +20,8 @@ class ListScreenTest {
     @get:Rule
     val composeRule = createComposeRule()
 
+    private fun str(id: Int) = InstrumentationRegistry.getInstrumentation().targetContext.getString(id)
+
     private fun show(state: ListUiState, onIncrement: (String) -> Unit = {}) = composeRule.setContent {
         LidaTheme {
             ListContent(state = state, onAdd = {}, onOpen = {}, onIncrement = onIncrement)
@@ -27,7 +31,7 @@ class ListScreenTest {
     @Test
     fun emptyState_showsHint() {
         show(ListUiState(isLoading = false))
-        composeRule.onNodeWithText("Тут з'являться", substring = true).assertIsDisplayed()
+        composeRule.onNodeWithText(str(R.string.empty_list)).assertIsDisplayed()
     }
 
     @Test
@@ -37,7 +41,7 @@ class ListScreenTest {
         show(ListUiState(items = listOf(item), isLoading = false), onIncrement = { clicked = it })
 
         composeRule.onNodeWithText("S2 · E5").assertIsDisplayed()
-        composeRule.onNodeWithText("+1 епізод").performClick()
+        composeRule.onNodeWithText(str(R.string.increment_episode)).performClick()
         assertEquals(item.id, clicked)
     }
 
@@ -47,6 +51,6 @@ class ListScreenTest {
         show(ListUiState(items = listOf(item), isLoading = false))
 
         composeRule.onNodeWithText("1:23:45").assertIsDisplayed()
-        composeRule.onNodeWithText("+1 епізод").assertDoesNotExist()
+        composeRule.onNodeWithText(str(R.string.increment_episode)).assertDoesNotExist()
     }
 }

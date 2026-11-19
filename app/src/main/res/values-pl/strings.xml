@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Lida</string>
+    <string name="list_title">Lida</string>
+    <string name="add">Dodaj</string>
+    <string name="back">Wstecz</string>
+    <string name="increment_episode">+1 odcinek</string>
+    <string name="season_episode">S%1$d · E%2$d</string>
+    <string name="empty_list">Tu pojawią się filmy i seriale. Naciśnij „+”, aby dodać pierwszy</string>
+    <string name="edit_title_new">Nowy wpis</string>
+    <string name="edit_title_existing">Edycja</string>
+    <string name="field_title">Tytuł</string>
+    <string name="kind_movie">Film</string>
+    <string name="kind_series">Serial</string>
+    <string name="field_season">Sezon</string>
+    <string name="field_episode">Odcinek</string>
+    <string name="field_timestamp">Znacznik czasu (1:23:45)</string>
+    <string name="save">Zapisz</string>
+    <string name="delete">Usuń</string>
+    <string name="error_title">Podaj tytuł</string>
+    <string name="error_timestamp">Format: 23:45 lub 1:23:45</string>
+</resources>

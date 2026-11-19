@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Ліда</string>
+    <string name="list_title">Ліда</string>
+    <string name="add">Додати</string>
+    <string name="back">Назад</string>
+    <string name="increment_episode">+1 епізод</string>
+    <string name="season_episode">S%1$d · E%2$d</string>
+    <string name="empty_list">Тут з\'являться фільми й серіали. Натисни «+», щоб додати перший</string>
+    <string name="edit_title_new">Новий запис</string>
+    <string name="edit_title_existing">Редагування</string>
+    <string name="field_title">Назва</string>
+    <string name="kind_movie">Фільм</string>
+    <string name="kind_series">Серіал</string>
+    <string name="field_season">Сезон</string>
+    <string name="field_episode">Епізод</string>
+    <string name="field_timestamp">Таймкод (1:23:45)</string>
+    <string name="save">Зберегти</string>
+    <string name="delete">Видалити</string>
+    <string name="error_title">Вкажи назву</string>
+    <string name="error_timestamp">Формат: 23:45 або 1:23:45</string>
+</resources>

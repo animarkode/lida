@@ -36,6 +36,10 @@ android {
     buildFeatures {
         compose = true
     }
+    androidResources {
+        // Per-app language picker (Android 13+): en, uk, pl.
+        generateLocaleConfig = true
+    }
 }
 
 room {
