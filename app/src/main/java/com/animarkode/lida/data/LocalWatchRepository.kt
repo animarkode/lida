@@ -27,6 +27,7 @@ class LocalWatchRepository(
             item.copy(
                 season = item.season ?: 1,
                 episode = (item.episode ?: 0) + 1,
+                timestamp = null, // the position belonged to the previous episode
                 updatedAt = now,
             ),
         )

@@ -25,7 +25,7 @@ class FakeWatchRepository(initial: List<WatchItem> = emptyList()) : WatchReposit
 
     override suspend fun incrementEpisode(id: String) {
         val item = getItem(id) ?: return
-        put(item.copy(season = item.season ?: 1, episode = (item.episode ?: 0) + 1, updatedAt = ++now))
+        put(item.copy(season = item.season ?: 1, episode = (item.episode ?: 0) + 1, timestamp = null, updatedAt = ++now))
     }
 
     override suspend fun delete(id: String) {

@@ -75,6 +75,15 @@ class LocalWatchRepositoryTest {
     }
 
     @Test
+    fun incrementEpisode_clearsTimestampOfPreviousEpisode() = runTest {
+        val item = series(season = 1, episode = 5).copy(timestamp = "23:45")
+        repo.save(item)
+        repo.incrementEpisode(item.id)
+
+        assertEquals(null, repo.getItem(item.id)!!.timestamp)
+    }
+
+    @Test
     fun save_setsUpdatedAtFromClock() = runTest {
         val item = series()
         now = 42
