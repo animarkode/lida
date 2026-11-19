@@ -51,6 +51,17 @@ class EditViewModelTest {
     }
 
     @Test
+    fun save_twiceOnNewItem_createsOneRecord() {
+        val repo = FakeWatchRepository()
+        val vm = newVm(repo)
+        vm.onTitleChange("Dune")
+        vm.save()
+        vm.save()
+
+        assertEquals(1, repo.rows.size)
+    }
+
+    @Test
     fun save_invalidTimestamp_setsErrorAndDoesNotSave() {
         val repo = FakeWatchRepository()
         val vm = newVm(repo)
@@ -109,6 +120,19 @@ class EditViewModelTest {
         assertEquals(severance.id, saved.id)
         assertEquals(Status.FINISHED, saved.status)
         assertEquals("Severance S2", saved.title)
+    }
+
+    @Test
+    fun onTimestampChange_turnsNumericKeypadSeparatorsIntoColons() {
+        val vm = newVm(FakeWatchRepository())
+        vm.onTimestampChange("1.23,45")
+        assertEquals("1:23:45", vm.uiState.value.timestamp)
+
+        vm.onTimestampChange("23-45")
+        assertEquals("23:45", vm.uiState.value.timestamp)
+
+        vm.onTimestampChange("1 23 45")
+        assertEquals("1:23:45", vm.uiState.value.timestamp)
     }
 
     @Test

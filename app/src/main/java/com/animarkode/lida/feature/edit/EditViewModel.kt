@@ -18,12 +18,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+private val KEYPAD_SEPARATORS = Regex("[.,\\- ]")
+
 class EditViewModel(
     savedStateHandle: SavedStateHandle,
     private val repository: WatchRepository,
 ) : ViewModel() {
     private val itemId: String? = savedStateHandle.get<String>("id")
     private var original: WatchItem? = null
+    private var isSaving = false
 
     private val _uiState = MutableStateFlow(EditUiState(isNew = itemId == null))
     val uiState: StateFlow<EditUiState> = _uiState.asStateFlow()
@@ -58,9 +61,13 @@ class EditViewModel(
         if (value.all(Char::isDigit)) _uiState.update { it.copy(episode = value) }
     }
 
-    fun onTimestampChange(value: String) = _uiState.update { it.copy(timestamp = value, timestampError = false) }
+    /** The numeric keypad has no ":", so its separators (". , -" and space) become colons. */
+    fun onTimestampChange(value: String) = _uiState.update {
+        it.copy(timestamp = value.replace(KEYPAD_SEPARATORS, ":"), timestampError = false)
+    }
 
     fun save() {
+        if (isSaving) return
         val state = _uiState.value
         val title = state.title.trim()
         val timestamp = state.timestamp.trim()
@@ -79,6 +86,7 @@ class EditViewModel(
             episode = if (isSeries) state.episode.toIntOrNull() else null,
             timestamp = timestamp.ifEmpty { null },
         )
+        isSaving = true
         viewModelScope.launch {
             repository.save(item)
             _uiState.update { it.copy(isSaved = true) }
