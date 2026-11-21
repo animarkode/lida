@@ -57,7 +57,7 @@ Code is under `app/src/main/java/com/animarkode/lida/`: `data/` (model, `local/`
 - **Commits made by an agent end with a `Co-Authored-By:` trailer naming the model.** This is the single source of truth; skills and agents reference this rule.
 - Work on a branch named `{issue-number}-{kebab-description}`, never on `main`.
 - No push and no PR without explicit user confirmation.
-- Plans go to `.claude/plans/{YYYY-MM-DD}-{issue}-{slug}.md` (gitignored). The committed MVP plan in `docs/superpowers/plans/` stays as history.
+- Plans go to `.claude/plans/{YYYY-MM-DD}-{issue}-{slug}.md` (gitignored). Plans live only locally: never commit a plan, and never write one to `docs/` (this overrides any skill default such as `docs/superpowers/plans/`).
 - Keep changes scoped to the request; preserve unrelated working-tree changes; never commit secrets.
 
 ## Skills
