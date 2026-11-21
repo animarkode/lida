@@ -40,7 +40,7 @@ Code is under `app/src/main/java/com/animarkode/lida/`: `data/` (model, `local/`
 ## Device notes
 
 - The phone must be unlocked for UI tests.
-- `connectedAndroidTest` uninstalls the app when it finishes; run `:app:installDebug` afterwards.
+- `connectedDebugAndroidTest` uninstalls the app when it finishes; run `:app:installDebug` afterwards.
 - There is one device: never run instrumented tests or installs in parallel. `testDebugUnitTest` and `lintDebug` may run in parallel.
 
 ## Localization

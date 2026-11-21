@@ -40,5 +40,6 @@ captures/
 # Superpowers scratch
 .superpowers/
 .claude/plans/
+.claude/worktrees/
 
 !gradle/wrapper/gradle-wrapper.jar

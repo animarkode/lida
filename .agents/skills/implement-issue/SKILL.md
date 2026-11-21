@@ -4,7 +4,7 @@ description: Implement a GitHub issue end-to-end, sized to the issue
 argument-hint: <issue-number> [--tier N] [--worktree]
 arguments: issue
 disable-model-invocation: true
-allowed-tools: Bash(gh issue view *) Bash(git branch --show-current) Bash(git status --short)
+allowed-tools: Bash(gh issue view *) Bash(gh issue develop --list *) Bash(git branch --show-current) Bash(git status --short) Bash(git rev-parse --git-dir) Bash(git worktree list)
 ---
 
 ## Context
@@ -42,7 +42,7 @@ Evaluate against the injected labels and body only. No code reading, no extra `g
 
 ## Branch
 
-If on `main`, create and check out `{issue-number}-{kebab-case-description}`. If already on this issue's branch, stay. Never start work on `main`.
+If on `main`, create and check out `{issue-number}-{kebab-case-description}`. If already on this issue's branch, stay. On any other branch, stop and ask — never stack one issue's commits on another issue's branch. Never start work on `main`.
 
 ## Verify
 
@@ -50,7 +50,7 @@ Every Gradle command goes through the `gradle-run` skill — never `./gradlew` d
 
 ## Tier 1
 
-Edit directly, run the issue's verify command, commit (Conventional Commits and the trailer rule from `AGENTS.md`), then run the `code-review` skill on the diff.
+Edit directly — for a `type:fix`, write the failing test first (`superpowers:test-driven-development`, per `AGENTS.md`) — run the issue's verify command, commit (Conventional Commits and the trailer rule from `AGENTS.md`), then run the `code-review` skill on the diff.
 
 **Escape hatch — stop and re-propose Tier 2** when any of these trips:
 

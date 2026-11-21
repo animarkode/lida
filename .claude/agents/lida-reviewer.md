@@ -3,7 +3,7 @@ name: lida-reviewer
 description: Reviews a Lida diff against its task brief and project conventions.
 model: sonnet
 effort: high
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, Skill
 color: red
 ---
 
